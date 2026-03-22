@@ -1,0 +1,135 @@
+:root {
+    --font-heading: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+    --font-body: 'Liberation Serif', 'PT Serif', 'Times New Roman', serif;
+    
+    --text-color: #2c2825; /* Чуть теплее, чем чисто черный */
+    --bg-color: #f7f6f2; /* Легкий теплый серо-бежевый, "бумажный" фон */
+    --accent-color: #8c7355; /* Приглушенный коричневый для акцентов */
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6; /* Чуть увеличил для легкости чтения */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- ШАПКА И КНОПКА --- */
+header {
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto 40px;
+    padding: 0 20px;
+}
+
+.cover-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Объемная тень для обложки */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.25); 
+    margin-bottom: 35px;
+}
+
+h1, h2, h5 {
+    font-family: var(--font-heading);
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+h1 { font-size: 2.4em; color: #1a1a1a; }
+h2 { font-size: 1.4em; color: #555; }
+h5 { font-size: 1em; color: #777; margin-top: 20px; }
+
+/* Кнопка скачивания PDF */
+.download-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 28px;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(140, 115, 85, 0.3);
+}
+
+.download-btn:hover {
+    background-color: #705b42;
+    transform: translateY(-2px); /* Легкое поднятие при наведении */
+}
+
+/* --- СЕТКА ДЛЯ СТИХОВ --- */
+.poems-container {
+    max-width: 1100px; /* Чуть сузил контейнер для уюта */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.poem-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+/* Элегантный разделитель вместо простой линии */
+.poem-pair::after {
+    content: "•  •  •";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 1.5em;
+    letter-spacing: 15px;
+    opacity: 0.5;
+}
+
+/* Убираем разделитель у последнего стиха */
+.poem-pair:last-child::after {
+    display: none;
+}
+
+h3 {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--accent-color); /* Выделили заголовки стихов цветом */
+}
+
+.poem-text {
+    white-space: pre-wrap; 
+    font-size: 1.15em; /* Чуть крупнее для чтения */
+}
+
+/* --- АДАПТИВНОСТЬ (ДЛЯ ШИРОКИХ ЭКРАНОВ) --- */
+@media (min-width: 768px) {
+    .poem-pair {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px; 
+    }
+    
+    /* ТРЮК ДЛЯ ВЫРАВНИВАНИЯ: 
+       Сдвигаем правую колонку (английскую) вправо.
+       Текст внутри останется прижатым к левому краю, 
+       но сам блок уедет к правому краю контейнера. */
+    .en {
+        margin-left: auto; /* Толкаем блок вправо */
+        max-width: 400px; /* Ограничиваем ширину, чтобы он не растягивался на всю половину */
+    }
+    
+    /* Русскую колонку тоже немного ограничим, чтобы она не казалась слишком широкой */
+    .ru {
+        max-width: 450px;
+    }
+}
